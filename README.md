@@ -1,9 +1,13 @@
-# Introduction into working with phylociraptor
+# Introduction to  working with phylociraptor
 
 ## Installing phylociraptor
 
 1. Create a conda environment with snakemake (this is already provided for you!)
 If you don't have conda installed, first look [here](https://docs.conda.io/en/latest/miniconda.html).
+
+> [!NOTE]
+> No need to run the first two commands. We have already prepared this for you. Simple activate the conda environment.
+
 
 ```
 $ conda install -n base -c conda-forge mamba
@@ -14,7 +18,6 @@ $ conda activate snakemake
 2. Clone the phylociraptor repository:
 
 Phylociraptor is also hosted on GitHub: [https://github.com/reslp/phylociraptor](https://github.com/reslp/phylociraptor).
-
 
 ```
 (snakemake) $ git clone --recursive https://github.com/reslp/phylociraptor.git
@@ -66,12 +69,35 @@ Examples:
 
 Run these commands from inside the phylociraptor directory in the given order to reproduce the example.
 
-## Copy the necessary files:
+## Download the necessary input files:
+
+Phylociraptor uses two main files which serve as input to the pipeline. One contains all the settings for the analysis in yaml format. The other one contains a list of all the samples.
+
+Let's do it:
+
+The are part of this Github repository. The commands below assume that you are inside your phylociraptor directory:
 
 ```
-cp data/test_cases/small/config.yaml data/
-cp data/test_cases/small/small.csv data/
+curl https://raw.githubusercontent.com/reslp/phylociraptor-workshop/refs/heads/main/config.yaml > data/config.yaml
+curl https://raw.githubusercontent.com/reslp/phylociraptor-workshop/refs/heads/main/small.csv > data/small.csv 
 ```
+
+We will analyse a fungal dataset to confirm that Dikarya are monophyletic and consist of the two fungal groups Ascomycota and Basidiomycota.
+The dataset consists of 20 fungal taxa. You can get some more information about them [here](https://github.com/reslp/phylociraptor-workshop/blob/main/fungi-info.md).
+
+
+
+## One extra step...
+
+This step here is usually not necessary. We do it here the speed up the subsequent analysis. phylociraptor uses singularity containers to run different software so we don't have to install them individually (minimal number of dependencies). These containers can have large file sizes and are stored in large container repositories. To skip this download step we have predownloaded them for you. Now we just have to move them to the correct location.
+
+Inside your phylociraptor directory run:
+
+```
+mkdir .snakemake/singularity
+cp ~/Share/phylociraptor/.snakemake/singularity/* .snakemake/singularity/
+```
+
 
 ## setup the pipeline:
 
@@ -86,17 +112,33 @@ This runs on a single thread (local=1) and the same machine. It should take abou
 We will modify the downloaded BUSCO set to only 20 genes to speed up computation. These genes have been selected because they are present in almost all of the genomes.
 
 ```
-./phylociraptor util modify-busco -b fungi_odb9 -g 101133at4751,126519at4751,129520at4751,20600at4751,23198at4751,235463at4751,300016at4751,310891at4751,312080at4751,371481at4751,384315at4751,386245at4751,244066at4751,245900at4751,251158at4751,26329at4751,47592at4751,488348at4751,490662at4751,73383at4751
+./phylociraptor util modify-busco -b fungi_odb10 -g 101133at4751,126519at4751,129520at4751,20600at4751,23198at4751,235463at4751,300016at4751,310891at4751,312080at4751,371481at4751,384315at4751,386245at4751,244066at4751,245900at4751,251158at4751,26329at4751,47592at4751,488348at4751,490662at4751,73383at4751
 ```
 
 This should take only a few seconds. After the script is finished (no errors should show up). 
 
-**IMPORTANT**: You have to follow the instructions on screen and modify the config file accordingly to be able to use the modified BUSCO set!
+> [!IMPORTANT] 
+> You have to follow the instructions on screen and modify the config file accordingly to be able to use the modified BUSCO set!
+> In short: In your `config.yaml` file, under **orthology** and **busco_options** modify the the line `set: "fungi_odb10"` to `set: "fungi-seed--genes-20_odb10"` 
 
 
 ## Run orthology to indentify single-copy orthologs:
 
-The subsequent steps use a SLURM cluster. You may have to modify the correpsonding cluster config file accordingly.
+> [!CAUTION]
+> We will not run this step ourselves due to the high computational demands. Instead we will use precomputed results.
+> Copying this should take about 1-2 minutes.
+
+
+Inside your phylociraptor directory run:
+```
+rsync -avz --progress --dry-run /home/$USER/Share/phylociraptor/results/ ./results/
+```
+
+Verify that orthology is now listed as done with `phylociraptor check`.
+
+
+For completeness, here is the command we used to create these results.
+The subsequent steps use a SLURM cluster, due to the high computational demands. 
 
 ```
 ./phylociraptor orthology -t slurm -c data/cluster-config-GSC.yaml.template
@@ -105,46 +147,49 @@ The subsequent steps use a SLURM cluster. You may have to modify the correpsondi
 ## Filter orthology results:
 
 ```
-./phylociraptor filter-orthology -t local -c data/cluster-config-GSC.yaml.template
+./phylociraptor filter-orthology -t local=1
 ```
 
 ## Create alignments of single-copy orthologs:
 
 ```
-./phylociraptor align -t slurm -c data/cluster-config-GSC.yaml.template
+./phylociraptor align -t local=2
 ```
 
 ## Filter alignments to remove poorly aligned regions:
 
 ```
-./phylociraptor filter-align -t slurm -c data/cluster-config-GSC.yaml.template
+./phylociraptor filter-align -t local=1
 ```
 
 ## Use filtered alignments to estimate the best substitution model and calculate gene trees
 
+This should take about 10 minutes.
 
 ```
-./phylociraptor modeltest -t slurm -c data/cluster-config-GSC.yaml.template
+./phylociraptor modeltest -t local=2
 ```
 
 ## Calculate concatenated Maximum-Likelihood trees
 
+This should take about 15 minutes.
 
 ```
-./phylociraptor mltree -t slurm -c data/cluster-config-GSC.yaml.template
+./phylociraptor mltree -t local=4 --debug
 ```
 
 ## Calculate species trees
 
 ```
-./phylociraptor speciestree -t slurm -c data/cluster-config-GSC.yaml.template
+./phylociraptor speciestree -t local=1
 ```
 
 ## Create a reports of the run
 
+During the first time this takes about 3-5 minutes.
+
 ```
-./phylociraptor report
-./phylociraptor report --figure
+./phylociraptor report --verbose
 ```
 
 ## A posteriori analysis of tree
@@ -158,7 +203,14 @@ Download NCBI lineage information for tree annotation:
 Estimate conflicts between tree:
 
 ```
-./phylociraptor util estimate-conflict -i all -o tipcov200 -s 43 -l lineage-info.txt -t 8 -b tipcoverage=200
+./phylociraptor util estimate-conflict -i all -o tipcov200 -s 43 -l lineage-info.txt -t 2 -b tipcoverage=200
+```
+
+Plot overview of conflicts/disagreements between trees:
+
+```
+./phylociraptor util plot-heatmap -m tipcov200.similarity_matrix.csv -r tipcov200.treelist.tsv
+./phylociraptor util plot-pca -r tipcov200.treelist.tsv -s 42
 ```
 
 Create tree plots as PDFs:
@@ -169,8 +221,11 @@ Create tree plots as PDFs:
 
 Plot conflicts between two tree:
 
+This may not work when there are no conflicts between your trees.
+
 ```
-./phylociraptor util plot-conflict -i T5,T15 -q tipcov200.quartets.csv -r tipcov200.treelist.tsv -s 42 -l lineage-info.txt -e class -g Mucor_racemosus,Glomus_cerebriforme,Smittium_simulii```
+./phylociraptor util plot-conflict -i T1,T3 -q tipcov200.quartets.csv -r tipcov200.treelist.tsv -s 42 -l lineage-info.txt -e class -g Mucor_racemosus,Glomus_cerebriforme,Smittium_simulii
+```
 
 
 
