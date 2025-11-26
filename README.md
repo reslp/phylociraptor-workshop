@@ -158,7 +158,7 @@ For completeness, here is the command we used to create these results on a HPC c
 ## Create alignments of single-copy orthologs:
 
 ```
-./phylociraptor align -t local=2
+./phylociraptor align -t local=2 --verbose --dry
 ```
 
 ## Filter alignments to remove poorly aligned regions:
