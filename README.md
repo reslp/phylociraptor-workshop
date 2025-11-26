@@ -95,7 +95,7 @@ Inside your phylociraptor directory run:
 
 ```
 mkdir -p .snakemake/singularity
-cp ~/Share/phylociraptor/.snakemake/singularity/* .snakemake/singularity/
+cp -v ~/Share/phylociraptor/.snakemake/singularity/* .snakemake/singularity/
 ```
 
 
