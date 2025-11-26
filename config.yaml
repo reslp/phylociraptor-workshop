@@ -31,9 +31,6 @@ filtering:
     seq_type: "aa"
     exclude_orthology: #"data/exclude.small_outgroup.csv"
 
-genetree_filtering:
-    bootstrap_cutoff: [0, 70] # Minimum mean Bootstrap support gene trees need to have to be included in the species tree. Default: 0 = No cutoff (all trees will be included)
-
 # settings related to alignment and trimming
 alignment:
     method: ["clustalo"] # options: "clustalo", "muscle", "mafft", "tcoffee"
@@ -65,6 +62,9 @@ modeltest:
     bootstrap: 1000
     options:
          iqtree: ""
+
+genetree_filtering:
+    bootstrap_cutoff: [0, 70] # Minimum mean Bootstrap support gene trees need to have to be included in the species tree. Default: 0 = No cutoff (all trees will be included)
 
 speciestree:
     method: ["astral"]
