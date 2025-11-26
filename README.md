@@ -104,7 +104,7 @@ cp -v ~/Share/phylociraptor/.snakemake/singularity/* .snakemake/singularity/
 This runs on a single thread (local=1) and the same machine. It should take about 5 minutes.
 
 ```
-./phylociraptor setup -t local=1
+./phylociraptor setup -t local=2 --verbose
 ```
 
 ## Modify the used busco set
