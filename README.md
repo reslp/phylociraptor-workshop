@@ -138,7 +138,7 @@ We will not actually run the process, but we can get an impression of what `phyl
 
 Inside your phylociraptor directory run:
 ```
-rsync -avz --progress --dry-run /home/$USER/Share/phylociraptor/results/ ./results/
+rsync -avz --progress /home/$USER/Share/phylociraptor/results/ ./results/
 ```
 
 Verify that orthology step is now considered completed, i.e. all expected files are there, with `phylociraptor check`.
