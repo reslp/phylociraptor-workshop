@@ -94,7 +94,7 @@ This step here is usually not necessary. We do it here the speed up the subseque
 Inside your phylociraptor directory run:
 
 ```
-mkdir .snakemake/singularity
+mkdir -p .snakemake/singularity
 cp ~/Share/phylociraptor/.snakemake/singularity/* .snakemake/singularity/
 ```
 
