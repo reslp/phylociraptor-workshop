@@ -124,21 +124,26 @@ This should take only a few seconds. After the script is finished (no errors sho
 
 ## Run orthology to indentify single-copy orthologs:
 
+Identifying the single-copy orthologs as determined by the BUSCO set specified in your config file can be done with the `./phylociraptor orthology` command.
+
+We will not actually run the process, but we can get an impression of what `phylociraptor` would be doing by performing a so-called dry run, which we consider very useful. Note that the `--dry` option can be used at all stages of `phylociraptor`. Let's try it out.
+
+```
+./phylociraptor orthology -t local --dry --verbose
+```
+
 > [!CAUTION]
 > We will not run this step ourselves due to the high computational demands. Instead we will use precomputed results.
 > Copying this should take about 1-2 minutes.
-
 
 Inside your phylociraptor directory run:
 ```
 rsync -avz --progress --dry-run /home/$USER/Share/phylociraptor/results/ ./results/
 ```
 
-Verify that orthology is now listed as done with `phylociraptor check`.
+Verify that orthology step is now considered completed, i.e. all expected files are there, with `phylociraptor check`.
 
-
-For completeness, here is the command we used to create these results.
-The subsequent steps use a SLURM cluster, due to the high computational demands. 
+For completeness, here is the command we used to create these results on a HPC cluster - specifically using the SLURM queueing system - due to high computational demands - yes, indeed, `phylociraptor` can do this ..
 
 ```
 ./phylociraptor orthology -t slurm -c data/cluster-config-GSC.yaml.template
