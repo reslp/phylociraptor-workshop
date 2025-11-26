@@ -158,13 +158,13 @@ For completeness, here is the command we used to create these results on a HPC c
 ## Create alignments of single-copy orthologs:
 
 ```
-./phylociraptor align -t local=2 --verbose --dry
+./phylociraptor align -t local=2 --verbose
 ```
 
 ## Filter alignments to remove poorly aligned regions:
 
 ```
-./phylociraptor filter-align -t local=1
+./phylociraptor filter-align -t local=2 --verbose
 ```
 
 ## Use filtered alignments to estimate the best substitution model and calculate gene trees
