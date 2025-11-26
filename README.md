@@ -164,7 +164,7 @@ For completeness, here is the command we used to create these results on a HPC c
 ## Filter alignments to remove poorly aligned regions:
 
 ```
-./phylociraptor filter-align -t local=2 --verbose
+./phylociraptor filter-align -t local=4 --verbose
 ```
 
 ## Use filtered alignments to estimate the best substitution model and calculate gene trees
@@ -172,7 +172,7 @@ For completeness, here is the command we used to create these results on a HPC c
 This should take about 10 minutes.
 
 ```
-./phylociraptor modeltest -t local=2
+./phylociraptor modeltest -t local=4
 ```
 
 ## Calculate concatenated Maximum-Likelihood trees
@@ -186,7 +186,7 @@ This should take about 15 minutes.
 ## Calculate species trees
 
 ```
-./phylociraptor speciestree -t local=1
+./phylociraptor speciestree -t local=4
 ```
 
 ## Create a reports of the run
