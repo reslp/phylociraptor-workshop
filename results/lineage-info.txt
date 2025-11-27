@@ -1,0 +1,20 @@
+name	cellular root	clade	class	domain	family	genus	kingdom	no rank	order	phylum	species	subclass	subgenus	subkingdom	suborder	subphylum
+Amanita_muscaria	cellular organisms	Opisthokonta	Agaricomycetes	Eukaryota	Amanitaceae	Amanita	Fungi		Agaricales	Basidiomycota	Amanita muscaria	Agaricomycetidae		Dikarya	Pluteineae	Agaricomycotina
+Hygrocybe_conica	cellular organisms	Opisthokonta	Agaricomycetes	Eukaryota	Hygrophoraceae	Hygrocybe	Fungi		Agaricales	Basidiomycota	Hygrocybe conica	Agaricomycetidae		Dikarya	Hygrophorineae	Agaricomycotina
+Fistulina_hepatica	cellular organisms	Opisthokonta	Agaricomycetes	Eukaryota	Fistulinaceae	Fistulina	Fungi		Agaricales	Basidiomycota	Fistulina hepatica	Agaricomycetidae		Dikarya	Schizophyllineae	Agaricomycotina
+Calocera_cornea	cellular organisms	Opisthokonta	Dacrymycetes	Eukaryota	Dacrymycetaceae	Calocera	Fungi		Dacrymycetales	Basidiomycota	Calocera cornea			Dikarya		Agaricomycotina
+Tremella_fuciformis	cellular organisms	Opisthokonta	Tremellomycetes	Eukaryota	Tremellaceae	Tremella	Fungi		Tremellales	Basidiomycota	Tremella fuciformis			Dikarya		Agaricomycotina
+Bullera_alba	cellular organisms	Opisthokonta	Tremellomycetes	Eukaryota	Bulleraceae	Bullera	Fungi		Tremellales	Basidiomycota	Bullera alba			Dikarya		Agaricomycotina
+Phaeotremella_skinneri	cellular organisms	Opisthokonta	Tremellomycetes	Eukaryota	Phaeotremellaceae	Phaeotremella	Fungi		Tremellales	Basidiomycota	Phaeotremella skinneri			Dikarya		Agaricomycotina
+Puccinia_graminis	cellular organisms	Opisthokonta	Pucciniomycetes	Eukaryota	Pucciniaceae	Puccinia	Fungi		Pucciniales	Basidiomycota	Puccinia graminis			Dikarya		Pucciniomycotina
+Uromyces_transversalis	cellular organisms	Opisthokonta	Pucciniomycetes	Eukaryota	Pucciniaceae	Uromyces	Fungi		Pucciniales	Basidiomycota	Uromyces transversalis			Dikarya		Pucciniomycotina
+Hemileia_vastatrix	cellular organisms	Opisthokonta	Pucciniomycetes	Eukaryota	Zaghouaniaceae	Hemileia	Fungi		Pucciniales	Basidiomycota	Hemileia vastatrix			Dikarya		Pucciniomycotina
+Capronia_coronata	cellular organisms	leotiomyceta	Eurotiomycetes	Eukaryota	Herpotrichiellaceae	Capronia	Fungi		Chaetothyriales	Ascomycota	Capronia coronata	Chaetothyriomycetidae		Dikarya		Pezizomycotina
+Aspergillus_nidulans	cellular organisms	leotiomyceta	Eurotiomycetes	Eukaryota	Aspergillaceae	Aspergillus	Fungi		Eurotiales	Ascomycota	Aspergillus nidulans	Eurotiomycetidae	Aspergillus subgen. Nidulantes	Dikarya		Pezizomycotina
+Taphrina_betulina	cellular organisms	Opisthokonta	Taphrinomycetes	Eukaryota	Taphrinaceae	Taphrina	Fungi		Taphrinales	Ascomycota	Taphrina betulina			Dikarya		Taphrinomycotina
+Protomyces_gravidus	cellular organisms	Opisthokonta	Taphrinomycetes	Eukaryota	Protomycetaceae	Protomyces	Fungi		Taphrinales	Ascomycota	Protomyces gravidus			Dikarya		Taphrinomycotina
+Usnea_hakonensis	cellular organisms	OSLEUM clade	Lecanoromycetes	Eukaryota	Parmeliaceae	Usnea	Fungi		Lecanorales	Ascomycota	Usnea hakonensis	Lecanoromycetidae		Dikarya	Lecanorineae	Pezizomycotina
+Pichia_fermentans	cellular organisms	saccharomyceta	Pichiomycetes	Eukaryota	Pichiaceae	Pichia	Fungi		Pichiales	Ascomycota	Pichia fermentans			Dikarya		Saccharomycotina
+Glomus_cerebriforme	cellular organisms	Opisthokonta	Glomeromycetes	Eukaryota	Glomeraceae	Glomus	Fungi	Fungi incertae sedis	Glomerales	Mucoromycota	Glomus cerebriforme					Glomeromycotina
+Smittium_simulii	cellular organisms	Opisthokonta	Harpellomycetes	Eukaryota	Legeriomycetaceae	Smittium	Fungi	Fungi incertae sedis	Harpellales	Zoopagomycota	Smittium simulii					Kickxellomycotina
+Mucor_racemosus	cellular organisms	Opisthokonta	Mucoromycetes	Eukaryota	Mucoraceae	Mucor	Fungi	Fungi incertae sedis	Mucorales	Mucoromycota	Mucor racemosus				Mucorineae	Mucoromycotina
