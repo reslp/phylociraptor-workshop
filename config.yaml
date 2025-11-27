@@ -58,7 +58,7 @@ trimming:
 
 modeltest:
     method: ["iqtree"]
-    threads: 5
+    threads: 4
     bootstrap: 1000
     options:
          iqtree: ""
@@ -75,7 +75,7 @@ speciestree:
 mltree:
     method: ["iqtree"] #["iqtree", "raxml"]
     threads:
-        iqtree: 20
+        iqtree: 4
         raxml: 20
         iqtree-unpartitioned:
     bootstrap:
