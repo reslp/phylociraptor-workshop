@@ -167,6 +167,17 @@ For completeness, here is the command we used to create these results on a HPC c
 ./phylociraptor filter-align -t local=4 --verbose
 ```
 
+## Create a report of the run
+
+A lot has happened until now. It would be a good idea to get an overview about the different steps and how data changed as it went through phylociraptor. 
+We can create a report of what has happend so far. During the first time this takes about 3-5 minutes. A report can be generated after any step.
+
+```
+./phylociraptor report --verbose
+```
+
+When this is finished your report should be located in `results/report.html`. You can download the file to your computer and open it in your browser.
+
 ## Use filtered alignments to estimate the best substitution model and calculate gene trees
 
 This should take about 10 minutes.
@@ -189,13 +200,6 @@ This should take about 15 minutes.
 ./phylociraptor speciestree -t local=4
 ```
 
-## Create a reports of the run
-
-During the first time this takes about 3-5 minutes.
-
-```
-./phylociraptor report --verbose
-```
 
 ## A posteriori analysis of tree
 
