@@ -180,7 +180,7 @@ This should take about 10 minutes.
 This should take about 15 minutes.
 
 ```
-./phylociraptor mltree -t local=4 --debug
+./phylociraptor mltree -t local=4 --verbose
 ```
 
 ## Calculate species trees
